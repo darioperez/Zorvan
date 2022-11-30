@@ -1,5 +1,5 @@
 {
-  "name": "zorban",
+  "name": "zorvan",
   "private": true,
   "workspaces": [
     "packages/*"
