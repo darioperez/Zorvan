@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { ref } from "vue";
 import { RouterLink } from "vue-router";
+import { useUsersStore } from "@/stores/users.store";
 import { useSocketStore } from "@/stores/socket.store";
 import { useGeneralStore } from "@/stores/general.store";
 import ThreeSections from "@/layouts/ThreeSections.layout.vue";
@@ -16,6 +17,7 @@ const error = ref<any>("");
 
 const socket = useSocketStore();
 const { setRoom, setUser } = useGeneralStore();
+const usersStore = useUsersStore();
 
 const login = async () => {
   try {
@@ -59,6 +61,16 @@ const login = async () => {
             placeholder="off-topic"
           />
           <div v-if="error">{{ error }}</div>
+          <div class="flex flex-wrap gap-1">
+            <MyButton
+              v-for="r of usersStore.rooms"
+              :key="r"
+              size="small"
+              @click="room = r"
+            >
+              {{ r }}
+            </MyButton>
+          </div>
         </div>
       </div>
     </template>

@@ -3,6 +3,7 @@ import { createServer } from "http";
 import { Server } from "socket.io";
 import cors from "cors";
 import { addUser, getUser, deleteUser, getUsers } from "./users";
+import { rooms, createRoom } from "./rooms";
 
 const app = express();
 const http = createServer(app);
@@ -14,8 +15,10 @@ app.use(cors())
 
 io.on('connection', (socket) => {
   console.log("User connected");
+  io.emit("rooms", rooms);
 
   socket.on('login', ({ name, room }, callback) => {
+    createRoom(room);
     const { user, error } = addUser(socket.id, name, room)
     if (error) return callback(error)
 
@@ -23,7 +26,8 @@ io.on('connection', (socket) => {
       socket.join(user.room)
       socket.in(room).emit('notification', { title: 'Someone\'s here', description: `${user.name} just entered the room` })
     }
-    io.in(room).emit('users', getUsers(room))
+    io.in(room).emit('users', getUsers(room));
+    io.emit("rooms", rooms);
     callback()
   })
 
