@@ -1,6 +1,6 @@
 {
-  "name": "multiroom-messaging-app",
-  "version": "0.0.0",
+  "name": "zorvan-client",
+  "version": "0.0.1",
   "scripts": {
     "dev": "vite",
     "build": "run-p type-check build-only",
