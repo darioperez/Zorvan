@@ -1,0 +1,16 @@
+@import './base.css';
+
+html, body, #app {
+  height: 100%;
+}
+
+#app {
+  @apply bg-slate-200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.my-header__title {
+  @apply uppercase font-black tracking-wider;
+}
