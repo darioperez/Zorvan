@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const props = defineProps(["variant"]);
+const props = defineProps(["variant", "size"]);
 </script>
 
 <template>
@@ -9,6 +9,7 @@ const props = defineProps(["variant"]);
       variant === 'primary'
         ? 'bg-slate-900 text-white'
         : 'border-2 border-slate-900 text-slate-900',
+      size === 'small' ? 'text-xs py-2 px-3' : '',
     ]"
   >
     <slot />
